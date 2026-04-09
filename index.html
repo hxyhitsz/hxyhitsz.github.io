@@ -1,32 +1,408 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Interview Cheat Sheet Pro</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>黄雪岩 · 大模型算法工程师</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap');
-        body { font-family: 'Inter', sans-serif; }
-        .code-font { font-family: 'Fira Code', monospace; }
-        .markdown-content pre { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 0.5rem; padding: 1rem; overflow-x: auto; }
-        .markdown-content code { background: #f1f5f9; padding: 0.2rem 0.4rem; border-radius: 0.25rem; font-size: 0.875em; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f5f7fb;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
+            line-height: 1.5;
+            color: #1e2a3a;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            padding: 2rem 2rem 2.5rem;
+        }
+
+        /* 头部区域 */
+        .header {
+            border-bottom: 2px solid #e9edf2;
+            padding-bottom: 1.25rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+
+        .name-title h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            color: #0f172a;
+            margin-bottom: 0.3rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem 1.25rem;
+            margin-top: 0.25rem;
+            font-size: 0.9rem;
+            color: #2c3e50;
+        }
+
+        .contact-info a {
+            color: #2c6e9e;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s;
+        }
+
+        .contact-info a:hover {
+            border-bottom-color: #2c6e9e;
+        }
+
+        .project-link {
+            background: #f1f5f9;
+            padding: 0.2rem 0.7rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-family: monospace;
+        }
+
+        /* 通用章节样式 */
+        section {
+            margin-bottom: 1.8rem;
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            border-left: 4px solid #2c6e9e;
+            padding-left: 0.75rem;
+            margin-bottom: 1rem;
+            color: #0f172a;
+        }
+
+        .subsection {
+            margin-bottom: 1.2rem;
+        }
+
+        .item-header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 0.3rem;
+        }
+
+        .item-title {
+            font-weight: 700;
+            font-size: 1rem;
+            color: #0f172a;
+        }
+
+        .item-date {
+            font-size: 0.8rem;
+            color: #5b6e8c;
+            font-family: monospace;
+        }
+
+        .item-sub {
+            font-weight: 500;
+            color: #2c6e9e;
+            font-size: 0.9rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .org-name {
+            font-weight: 500;
+            color: #334155;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .desc-list {
+            padding-left: 1.25rem;
+            margin-top: 0.4rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .desc-list li {
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            line-height: 1.45;
+            color: #1e2a3a;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .tech-tag {
+            background: #eef2ff;
+            padding: 0.2rem 0.7rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-family: monospace;
+            color: #1e3a8a;
+        }
+
+        .paper-item, .project-item {
+            margin-bottom: 0.8rem;
+        }
+
+        .paper-title, .project-name {
+            font-weight: 600;
+        }
+
+        .paper-meta {
+            font-size: 0.85rem;
+            color: #4b5563;
+            margin-left: 0.5rem;
+        }
+
+        a {
+            color: #2c6e9e;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        hr {
+            margin: 1rem 0;
+            border: none;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .inline-code {
+            background: #f1f5f9;
+            padding: 0.1rem 0.3rem;
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 0.85rem;
+        }
+
+        .badge-percent {
+            background: #e6f7ec;
+            color: #166534;
+            font-weight: 500;
+            border-radius: 14px;
+            padding: 0.1rem 0.5rem;
+            font-size: 0.75rem;
+            display: inline-block;
+            margin-left: 0.3rem;
+        }
+
+        footer {
+            margin-top: 2rem;
+            text-align: center;
+            font-size: 0.75rem;
+            color: #7c8ba0;
+            border-top: 1px solid #e9edf2;
+            padding-top: 1.5rem;
+        }
+
+        @media (max-width: 700px) {
+            .container {
+                padding: 1.25rem;
+            }
+            .header {
+                flex-direction: column;
+            }
+            .item-header {
+                flex-direction: column;
+            }
+        }
     </style>
-<script type="importmap">
-{
-  "imports": {
-    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
-    "react/": "https://esm.sh/react@^19.2.4/",
-    "react": "https://esm.sh/react@^19.2.4"
-  }
-}
-</script>
-<link rel="stylesheet" href="/index.css">
 </head>
-<body class="bg-gray-50 text-gray-900">
-    <div id="root"></div>
-<script type="module" src="/index.tsx"></script>
+<body>
+<div class="container">
+    <!-- 头部信息 -->
+    <div class="header">
+        <div class="name-title">
+            <h1>黄雪岩</h1>
+            <div class="contact-info">
+                <span>📞 (+86) 136-1300-4130</span>
+                <span>✉️ <a href="mailto:1030515404@qq.com">1030515404@qq.com</a></span>
+                <span>🔗 <a href="https://hxyhitsz.github.io/" target="_blank" rel="noopener noreferrer">hxyhitsz.github.io</a></span>
+            </div>
+        </div>
+        <div class="project-link">
+            <a href="https://hxyhitsz.github.io/" target="_blank">🔭 个人主页 / GitHub</a>
+        </div>
+    </div>
+
+    <!-- 教育背景 -->
+    <section>
+        <div class="section-title">教育背景</div>
+        <div class="subsection">
+            <div class="item-header">
+                <span class="item-title">中国科学技术大学 · 信息科学技术学院</span>
+                <span class="item-date">2020.9 – 2023.6</span>
+            </div>
+            <div>硕士研究生 (保送)</div>
+        </div>
+        <div class="subsection">
+            <div class="item-header">
+                <span class="item-title">哈尔滨工业大学（深圳） · 电子与信息工程学院</span>
+                <span class="item-date">2016.9 – 2020.6</span>
+            </div>
+            <div>工学学士</div>
+        </div>
+    </section>
+
+    <!-- 论文 (3D视觉) -->
+    <section>
+        <div class="section-title">代表性论文</div>
+        <div class="paper-item">
+            <span class="paper-title">Progressive Spatio-temporal Alignment for Efficient Event-based Motion Estimation</span>
+            <span class="paper-meta">CVPR 2023 (第一作者) · <a href="#" onclick="return false;">paper link</a></span>
+        </div>
+        <div class="paper-item">
+            <span class="paper-title">High-Speed Structured Light Based 3D Scanning Using an Event Camera</span>
+            <span class="paper-meta">Optics Express 2021 (第一作者) · <a href="#" onclick="return false;">paper link</a></span>
+        </div>
+    </section>
+
+    <!-- 技术栈 -->
+    <section>
+        <div class="section-title">技术栈</div>
+        <div class="tech-stack">
+            <span class="tech-tag">Vim / C++ / GDB</span>
+            <span class="tech-tag">PyTorch / Profiler</span>
+            <span class="tech-tag">Bash / Git / Tmux</span>
+            <span class="tech-tag">Claude Opus 4.6 / Sonnet 4.5</span>
+            <span class="tech-tag">3D Vision / CNN / Transformer</span>
+            <span class="tech-tag">LLM / VLM / RL / Agent</span>
+            <span class="tech-tag">BEV / LoRA / DeepSpeed</span>
+        </div>
+        <div style="margin-top: 8px; font-size:0.85rem; color:#334155;">
+            Vibe Coding: Skill, MCP, WorkTree, Plan Mode · 算法&模型全栈
+        </div>
+    </section>
+
+    <!-- 工作经历 -->
+    <section>
+        <div class="section-title">工作经历</div>
+
+        <!-- 文远知行 -->
+        <div class="subsection">
+            <div class="item-header">
+                <span class="item-title">文远知行 · 自动驾驶领域 算法工程师</span>
+                <span class="item-date">2023 – 至今</span>
+            </div>
+            <ul class="desc-list">
+                <li><strong>道路元素自动标注项目 (分割检测模型负责人) 2025.01-2026.04</strong><br>
+                    中心线/车道线分割: MaskFormer + BEV特征 + 激光雷达融合，实例分割与匈牙利匹配策略实现87%地图车道线自动标注；通过GPU/NUMA亲和性绑定、TorchCompile、FlashAttention等优化，GPU利用率从50%提至90%。<br>
+                    <strong>VLM检测系统:</strong> 基于Qwen3-VL + SAM3多视角投票 + LoRA微调 + Hard Negative挖掘，常规场景mAP@0.5=86.3%，难例mAP提升12.6%；红绿灯状态准确率94.1%，路牌数字识别89.5%，替代82%人工标注工作量，效率提升3倍。<br>
+                    数据闭环 + 工具提效: 封装6个Skill/Agent用于智能CR、自动化测试等。
+                </li>
+                <li><strong>多源地图信息融合项目 Topo匹配模块负责人 (Matrix &amp; C++) 2024.07-2025.01</strong><br>
+                    有向图拓扑匹配问题建模(NP-hard)，稀疏剪枝+矩阵运算优化，路口匹配成功率98%以上，仅需人工补标2%。重构Displaz点云可视化工具，成为部门3D点云标准工具。
+                </li>
+                <li><strong>众包自动建图项目 路口中心线模块负责人 (Optimization &amp; C++) 2024.01-2024.07</strong><br>
+                    Bezier曲线参数化+LM二阶梯度优化，实现无车道线路口中心线自动补全。
+                </li>
+                <li><strong>视觉重定位项目 定位模型核心成员 (PyTorch &amp; C++) 2023.07-2024.01</strong><br>
+                    BEV特征 + SD地图匹配，单帧定位精度0.24m，yaw角误差1°，1m内召回率99%。
+                </li>
+            </ul>
+        </div>
+
+        <!-- XReal实习 -->
+        <div class="subsection">
+            <div class="item-header">
+                <span class="item-title">XReal · AI眼镜领域 算法工程师（实习 · 转正Offer）</span>
+                <span class="item-date">2022 – 2023</span>
+            </div>
+            <ul class="desc-list">
+                <li>从零搭建SLAM前端Benchmark对比框架，抽象整合光流算法，迁移SVO稀疏图像对齐、深度滤波器，提取edge特征，设计评估指标筛选最优前端方案。</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- 工作收获 & 荣誉 -->
+    <section>
+        <div class="section-title">荣誉与工作收获</div>
+        <ul class="desc-list">
+            <li>🏆 荣获2025年度算法部门季度之星（前2%），同年获得晋升；在职期间两次评获3+绩效（前30%）。</li>
+            <li>工程思维：坚持第一性原理，OKR目标管理，擅长数据闭环与AI全链路提效，重视代码版本管理与CI集成。</li>
+            <li>多次团队大组会分享算法开发与工具提速经验，推动工程最佳实践。</li>
+        </ul>
+    </section>
+
+    <!-- 个人项目经历 (轻量级大模型 + ChatGPT复刻) -->
+    <section>
+        <div class="section-title">个人项目经历</div>
+        
+        <div class="subsection">
+            <div class="item-header">
+                <span class="item-title">miniMind · 轻量级大语言模型 (复现与优化)</span>
+                <span class="item-date">2025</span>
+            </div>
+            <div><a href="https://github.com/hxyhitsz/minimind" target="_blank">github.com/hxyhitsz/minimind</a></div>
+            <ul class="desc-list" style="margin-top: 6px;">
+                <li>从零构建预训练、SFT、LoRA、DPO、蒸馏完整流程；实现MoE (共享专家+路由专家)、GQA分组查询注意力，推理速度提升30%。</li>
+                <li>新增MLA (Multi-Latent Attention)：参数/梯度/优化器节省25%，KVCache节省75%。</li>
+                <li>新增MTP (Multi-Token Prediction)：显存提升12.5%，训练速度快35%，推理速度1.7x。</li>
+                <li>创新MTC (Multi-Token Compression)：KVCache节省50%，训练&推理速度提升50%。</li>
+            </ul>
+        </div>
+
+        <div class="subsection">
+            <div class="item-header">
+                <span class="item-title">nanochat · 轻量级全栈ChatGPT复刻项目</span>
+                <span class="item-date">2026</span>
+            </div>
+            <div><a href="https://github.com/hxyhitsz/nanochat" target="_blank">github.com/hxyhitsz/nanochat</a></div>
+            <ul class="desc-list" style="margin-top: 6px;">
+                <li>基于Scaling Law & muP实现自动超参数缩放，支持12层至26层零样本迁移。</li>
+                <li>实现Muon优化器 + PolarExpress内核优化，训练速度提升15%；自适应方差缩减，动态调整正交化强度提升稳定性。</li>
+                <li>全链路实验：分词器训练、预训练、指令微调、GRPO、梯度累积、BF16/FP8混合精度。</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- 自我评价 / 额外强调AI提效 -->
+    <section>
+        <div class="section-title">自我评价</div>
+        <ul class="desc-list">
+            <li>⚡ 技术极客风格，热衷创造与工程落地，坚信AGI时代即将到来。</li>
+            <li>📐 算法基础扎实，多视几何经验丰富，擅长将模型能力与真实物理世界打通。</li>
+            <li>🤖 熟练运用Vibe Coding思想构建Skill & Agent体系，以AI全链路提效研发，实现从数据挖掘到部署的快速迭代。</li>
+        </ul>
+    </section>
+
+    <!-- 一些亮点标签展示 简洁 -->
+    <hr>
+    <div style="display: flex; flex-wrap: wrap; gap: 0.8rem; justify-content: flex-start; font-size: 0.8rem;">
+        <span>🏅 晋升&季度之星</span>
+        <span>📈 GPU利用率 50%→90%</span>
+        <span>🚗 自动驾驶自动标注87%</span>
+        <span>🧠 LLM优化: MLA/MTP/MTC</span>
+        <span>📡 视觉重定位精度0.24m</span>
+    </div>
+
+    <!-- 额外链接 (保留所有原简历链接: 个人主页/github项目) -->
+    <footer>
+        <div style="margin-bottom: 8px;">
+            <a href="https://hxyhitsz.github.io/" target="_blank">🌐 个人主页 (hxyhitsz.github.io)</a> &nbsp;|&nbsp;
+            <a href="https://github.com/hxyhitsz/minimind" target="_blank">📘 miniMind</a> &nbsp;|&nbsp;
+            <a href="https://github.com/hxyhitsz/nanochat" target="_blank">💬 nanochat</a>
+        </div>
+    </footer>
+</div>
 </body>
 </html>

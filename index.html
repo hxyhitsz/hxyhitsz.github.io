@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>黄雪岩 - 简历</title>
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --text-color: #333;
+            --light-bg: #f9f9f9;
+            --border-color: #e0e0e0;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .header-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+            font-size: 0.95rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .contact-item a {
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .contact-item a:hover {
+            text-decoration: underline;
+            opacity: 0.9;
+        }
+
+        nav {
+            background-color: white;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            padding: 15px 0;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--secondary-color);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        section {
+            padding: 60px 0;
+        }
+
+        section:nth-child(even) {
+            background-color: white;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--secondary-color);
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+
+        .education-item, .work-item, .project-item, .publication-item {
+            background-color: white;
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .education-item:hover, .work-item:hover, .project-item:hover, .publication-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .item-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--secondary-color);
+        }
+
+        .item-date {
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        .item-organization {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .item-description {
+            margin-top: 15px;
+        }
+
+        .item-description p {
+            margin-bottom: 10px;
+        }
+
+        .item-description ul {
+            padding-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .item-description li {
+            margin-bottom: 5px;
+        }
+
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .skill-category {
+            background-color: white;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+        }
+
+        .skill-category h3 {
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-tag {
+            background-color: var(--light-bg);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .skill-tag:hover {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .publication-item {
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .publication-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .publication-venue {
+            color: var(--accent-color);
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+
+        .project-link {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 5px 15px;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .project-link:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .self-assessment {
+            background-color: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+        }
+
+        .self-assessment p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        footer {
+            background-color: var(--secondary-color);
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 60px;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .nav-links {
+                gap: 15px;
+            }
+
+            .nav-links a {
+                font-size: 0.9rem;
+            }
+
+            .item-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+            }
+
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 40px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <h1>黄雪岩</h1>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span>📞</span>
+                    <span>(+86) 136-1300-4130</span>
+                </div>
+                <div class="contact-item">
+                    <span>📧</span>
+                    <span>1030515404@qq.com</span>
+                </div>
+                <div class="contact-item">
+                    <span>🌐</span>
+                    <a href="https://hxyhitsz.github.io/" target="_blank">Project</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container nav-container">
+            <ul class="nav-links">
+                <li><a href="#education">教育背景</a></li>
+                <li><a href="#publications">论文</a></li>
+                <li><a href="#skills">技术栈</a></li>
+                <li><a href="#work">工作经历</a></li>
+                <li><a href="#projects">个人项目</a></li>
+                <li><a href="#self-assessment">自我评价</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="education">
+        <div class="container">
+            <div class="section-title">
+                <h2>教育背景</h2>
+            </div>
+            <div class="education-item">
+                <div class="item-header">
+                    <div class="item-title">中国科学技术大学</div>
+                    <div class="item-date">2020.9 - 2023.6</div>
+                </div>
+                <div class="item-organization">信息科学技术学院 硕士研究生（保送）</div>
+            </div>
+            <div class="education-item">
+                <div class="item-header">
+                    <div class="item-title">哈尔滨工业大学（深圳）</div>
+                    <div class="item-date">2016.9 - 2020.6</div>
+                </div>
+                <div class="item-organization">电子与信息工程学院 工学学士</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="publications">
+        <div class="container">
+            <div class="section-title">
+                <h2>论文 (3D Vision)</h2>
+            </div>
+            <div class="publication-item">
+                <div class="publication-title">Progressive Spatio-temporal Alignment for Efficient Event-based Motion Estimation</div>
+                <div class="item-date">2023</div>
+                <div class="publication-venue">第一作者 Computer Vision and Pattern Recognition (CVPR)</div>
+                <div><a href="#" class="project-link">paper link</a></div>
+            </div>
+            <div class="publication-item">
+                <div class="publication-title">Hight-Speed Structured Light Based 3D Scanning Using an Event Camera</div>
+                <div class="item-date">2021</div>
+                <div class="publication-venue">第一作者 Optics Express (光学顶刊）</div>
+                <div><a href="#" class="project-link">paper link</a></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="container">
+            <div class="section-title">
+                <h2>技术栈</h2>
+            </div>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3>编程工具</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">Vim</span>
+                        <span class="skill-tag">C++</span>
+                        <span class="skill-tag">GDB</span>
+                        <span class="skill-tag">PyTorch</span>
+                        <span class="skill-tag">Profiler</span>
+                        <span class="skill-tag">Bash</span>
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">Yazi</span>
+                        <span class="skill-tag">Ripgrep</span>
+                        <span class="skill-tag">fzf</span>
+                        <span class="skill-tag">Tmux</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Vibe Coding</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">Claude Opus 4.6</span>
+                        <span class="skill-tag">Sonnet 4.5</span>
+                        <span class="skill-tag">CodeX 5.4</span>
+                        <span class="skill-tag">Skill</span>
+                        <span class="skill-tag">MCP</span>
+                        <span class="skill-tag">WorkTree</span>
+                        <span class="skill-tag">Plan Mode</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>算法 & 模型</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">3D Vision</span>
+                        <span class="skill-tag">CNN</span>
+                        <span class="skill-tag">Transformer</span>
+                        <span class="skill-tag">LLM</span>
+                        <span class="skill-tag">VLM</span>
+                        <span class="skill-tag">RL</span>
+                        <span class="skill-tag">Agent</span>
+                        <span class="skill-tag">ReAct</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="work">
+        <div class="container">
+            <div class="section-title">
+                <h2>工作经历</h2>
+            </div>
+            <div class="work-item">
+                <div class="item-header">
+                    <div class="item-title">文远知行 | 自动驾驶领域</div>
+                    <div class="item-date">2023-now</div>
+                </div>
+                <div class="item-organization">算法工程师</div>
+                <div class="item-description">
+                    <p><strong>1. 道路元素自动标注项目 分割检测模型负责人 (PyTorch & C++) 2025.01-2026.04</strong></p>
+                    <ul>
+                        <li><strong>中心线检测模型｜车道线分割模型</strong>：基于分割方法实现车道线元素的自动化标注。采用基于语义分割的 MaskFormer 模型，将环视相机特征投影到鸟瞰图 (BEV) 空间，并与激光雷达地图融合得到 BEV 特征；通过 instance query 与主干网络进行 cross-attention，得到实例分割结果。后处理模块采用匈牙利算法帧间匹配策略，统一解决了路段与路口的多帧匹配问题。</li>
+                        <li><strong>产出</strong>: 完成数据挖掘、模型开发、模型部署及后处理算法开发全流程工作。实现 87% 的地图车道线元素都由自动标注完成。</li>
+                        <li><strong>性能提效</strong>：通过 GPU/NUMA 亲和性绑定、TorchCompile 编译优化、Adam 算子融合及 FlashAttention 等策略，结合 PyTorch Profiler 全链路性能诊断，将 GPU 利用率从 50% 提升至 90%。</li>
+                        <li><strong>道路元素检测模型</strong>：基于 Qwen3-VL 构建 VLM 检测系统，实现对路牌（含数字识别）和红绿灯（含状态识别）的自动化标注与检测。以 Qwen3-VL 零样本推理为 baseline，联合 SAM3 多视角投票生成初始 GT；将模型预测与人工标注的差异样本（含多视角/ICL 分歧）作为 Hard Negative 人工精标后回灌，驱动 LoRA 微调迭代。推理阶段融合 Few-shot ICL、多视角投票及 FSM 约束解码，提升检测鲁棒性。</li>
+                        <li><strong>产出</strong>：常规场景 mAP@0.5=86.3%，难例 mAP=71.2%（提升 12.6%）；红绿灯状态准确率 94.1%，路牌数字识别 89.5%。自动化标注可替代 82% 的人工标注工作量（常规场景全自动，难例人工复核）；整体标注效率提升约 3 倍。</li>
+                        <li><strong>数据闭环</strong>：数据采集 → 模型推理 → 难例挖掘 → 人工标注校验 → 数据回流 → 迭代模型。</li>
+                        <li><strong>工具提效</strong>：封装 6 个 Skill & Agent 用于上下文维护、代码规范、智能 CR、Jira 处理、自动化测试。</li>
+                    </ul>
+                    
+                    <p><strong>2. 多源地图信息融合项目 Topo 匹配模块负责人 (Matrix & C++) 2024.07-2025.01</strong></p>
+                    <ul>
+                        <li><strong>背景</strong>：解决 SD 地图与自有地图之间的拓扑匹配难题，把 NP 问题通过稀疏性剪枝做工程落地。</li>
+                        <li><strong>方法 & 产出</strong>：将任务建模为有向图拓扑匹配问题 (O(N ! × N²）。通过矩阵运算替代多层 For 循环嵌套，并利用道路连接的稀疏性，对算法进行快速剪枝。本人负责算法设计、实现与线上部署，最终路口匹配成功率达 98% 以上，仅需人工补标剩余 2% 路口。</li>
+                        <li><strong>工具提效</strong>：本人基于 CMake 与 GDB 完成代码调试与验证，深度重构 Displaz 开源点云可视化工具，实现多格式 PLY 文件加载及点云自定义属性携带功能，该工具已成为部门 3D 点云可视化的标准指定工具。</li>
+                    </ul>
+                    
+                    <p><strong>3. 众包自动建图项目 路口中心线模块负责人 (Optimization & C++) 2024.01-2024.07</strong></p>
+                    <ul>
+                        <li><strong>背景</strong>：面向无车道线场景的路口中心线自动化生成算法研发</li>
+                        <li><strong>方法 & 产出</strong>：将问题建模为满足端点约束与曲率约束的数值优化问题；采用 Bezier 曲线对中心线进行参数化表达；基于 LM 二阶梯度优化算法求解最优曲线参数。本人负责算法设计与线上工程化部署，最终成功实现路口的中心线自动补全。</li>
+                    </ul>
+                    
+                    <p><strong>4. 视觉重定位项目 定位模型核心成员 (PyTorch & C++) 2023.07-2024.01</strong></p>
+                    <ul>
+                        <li><strong>背景</strong>：基于神经匹配算法，在 2D 开放地图中实现视觉定位，技术方案参考 OrienterNet</li>
+                        <li><strong>方法 & 产出</strong>：将环视相机特征投影至 BEV 空间并融合激光雷达信息，与 SD 地图特征通过 FFT Correlation 匹配实现 3-DoF（x,y,θ）定位。本人参与业务数据适配、Lidar 模块的搭建及模型部署的全流程工作，最终实现单帧定位平均精度 0.24m，yaw 角误差 1°，1m 内的定位召回率达 99%。</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="work-item">
+                <div class="item-header">
+                    <div class="item-title">XReal | AI 眼镜领域</div>
+                    <div class="item-date">2022-2023</div>
+                </div>
+                <div class="item-organization">算法工程师（实习并获得转正 Offer）</div>
+                <div class="item-description">
+                    <p>从零搭建 SLAM 前端 Benchmark 对比框架（C++）。负责多视角视觉几何算法研究，调研并拓展光流框架模块，实习那不同光流算法的代码抽象整合，迁移 SVO 稀疏图像对齐、深度滤波器等策略，提取 edge 特征提升系统鲁棒性，设计像素误差、位姿误差等评估指标，筛选最优前端组合方案。</p>
+                </div>
+            </div>
+            
+            <div class="work-item">
+                <div class="item-header">
+                    <div class="item-title">工作收获</div>
+                </div>
+                <div class="item-description">
+                    <ul>
+                        <li><strong>在职荣誉</strong>: 荣获 25 年度算法部门季度之星 (比例为 2%)，同年获得晋升；在职期间两次评获 3+ 绩效（前 30%），多次在团队大组会分享算法开发与工具提速经验。</li>
+                        <li><strong>工程思维</strong>: 坚持第一性原理，回归问题本质；遵循 OKR 目标管理、快速验证并即时反馈；擅用 AI 工具提效，实现快速落地。重视代码版本管理及 CI 集成测试。关注数据闭环，持续提升模型性能。</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="container">
+            <div class="section-title">
+                <h2>个人项目经历</h2>
+            </div>
+            <div class="project-item">
+                <div class="item-header">
+                    <div class="item-title">miniMind: 轻量级大语言模型（复现与优化）</div>
+                    <div class="item-date">2025</div>
+                </div>
+                <div class="item-description">
+                    <p><strong>技术栈</strong>: RoPE、MoE、MLA、MTP、DeepSpeed、LoRA、DPO</p>
+                    <ul>
+                        <li><strong>复现</strong>: 从零构建完整训练流程：预训练、监督微调、LoRA 微调、DPO 强化学习、模型蒸馏。实现混合专家架构，通过共享专家 + 路由专家机制提升模型效率。采用 GQA 分组查询注意力，优化 KV Cache 内存占用，推理速度提升 30%。训练出具备流畅对话能力的 145M 参数模型。</li>
+                        <li><strong>更新</strong>: 新增 Multi-Latent-Attention(MLA) 模块，参数、梯度、优化器节省 25%，KV Cache 节省 75%</li>
+                        <li><strong>更新</strong>: 新增 Multi-Token-Prediction(MTP) 模块，显存提升 12.5%, 训练速度快 35%，推理速度快 1.7x</li>
+                        <li><strong>创新</strong>: 设计 Multi-Token-Compression (MTC) 模块，KV Cache 节省 50%, 训练、推理速度快 50%</li>
+                    </ul>
+                    <a href="https://github.com/hxyhitsz/minimind" target="_blank" class="project-link">GitHub 链接</a>
+                </div>
+            </div>
+            
+            <div class="project-item">
+                <div class="item-header">
+                    <div class="item-title">nanochat: 轻量级全栈 ChatGPT 复刻项目</div>
+                    <div class="item-date">2026</div>
+                </div>
+                <div class="item-description">
+                    <p><strong>技术栈</strong>: Scaling Law、Muon、Flash Attention、GRPO、Gradient Accumulation、BF16/FP8</p>
+                    <ul>
+                        <li><strong>简介</strong>: 低成本复现 GPT-2 级别的对话模型，完成从分词器训练、预训练、指令微调、自动评估到交互式推理的全链路实验。为速度、精度的算法改进提供一个强基线。</li>
+                        <li><strong>复现</strong>: 基于 Scaling Laws 和 muP 理论，实现自动超参数缩放（批量大小、学习率、权重衰减），支持从 12 层到 26 层模型的零样本超参数迁移。</li>
+                        <li><strong>复现</strong>: 实现了 Muon 优化器的完整功能，包括 Newton-Schulz 正交化、Polar Express 方法融合内核优化使训练速度提升 15%。</li>
+                        <li><strong>改进</strong>: 自适应方差缩减。引入自适应学习率调整机制，根据模型训练的不同阶段（预热期、稳定期、收敛期）动态调整 Muon 优化器的正交化强度，解决小模型训练后期梯度方差过大的问题，进一步提升训练稳定性。</li>
+                    </ul>
+                    <a href="https://github.com/hxyhitsz/nanochat" target="_blank" class="project-link">GitHub 链接</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="self-assessment">
+        <div class="container">
+            <div class="section-title">
+                <h2>自我评价</h2>
+            </div>
+            <div class="self-assessment">
+                <p>• 技术极客风格，热衷创造与工程落地，坚信 AGI 时代即将到来;</p>
+                <p>• 算法基础扎实，具备多视几何经验，擅长将模型能力与真实物理世界打通;</p>
+                <p>• 熟练运用 Vibe Coding 思想构建 Skill & Agent 体系，以 AI 全链路提效研发;</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2026 黄雪岩</p>
+        </div>
+    </footer>
+
+    <script>
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // 导航栏滚动效果
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.15)';
+            } else {
+                nav.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
+            }
+        });
+
+        // 技能标签悬停效果
+        document.querySelectorAll('.skill-tag').forEach(tag => {
+            tag.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.05)';
+            });
+            tag.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>

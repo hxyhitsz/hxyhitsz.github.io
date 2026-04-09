@@ -13,7 +13,6 @@
             --light-bg: #f9f9f9;
             --border-color: #e0e0e0;
             --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            --transition: all 0.3s ease;
         }
 
         * {
@@ -71,12 +70,10 @@
         .contact-item a {
             color: white;
             text-decoration: none;
-            transition: var(--transition);
         }
 
         .contact-item a:hover {
             text-decoration: underline;
-            opacity: 0.9;
         }
 
         nav {
@@ -103,27 +100,6 @@
             text-decoration: none;
             color: var(--secondary-color);
             font-weight: 500;
-            transition: var(--transition);
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary-color);
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--primary-color);
-            transition: var(--transition);
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
         }
 
         section {
@@ -164,12 +140,6 @@
             padding: 30px;
             margin-bottom: 20px;
             box-shadow: var(--shadow);
-            transition: var(--transition);
-        }
-
-        .education-item:hover, .work-item:hover, .project-item:hover, .publication-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
 
         .item-header {
@@ -244,13 +214,6 @@
             border-radius: 20px;
             font-size: 0.9rem;
             border: 1px solid var(--border-color);
-            transition: var(--transition);
-        }
-
-        .skill-tag:hover {
-            background-color: var(--primary-color);
-            color: white;
-            border-color: var(--primary-color);
         }
 
         .publication-item {
@@ -277,11 +240,6 @@
             text-decoration: none;
             border-radius: 4px;
             font-size: 0.9rem;
-            transition: var(--transition);
-        }
-
-        .project-link:hover {
-            background-color: var(--secondary-color);
         }
 
         .self-assessment {
@@ -594,37 +552,5 @@
             <p>© 2026 黄雪岩</p>
         </div>
     </footer>
-
-    <script>
-        // 平滑滚动
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-
-        // 导航栏滚动效果
-        window.addEventListener('scroll', function() {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 100) {
-                nav.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.15)';
-            } else {
-                nav.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
-            }
-        });
-
-        // 技能标签悬停效果
-        document.querySelectorAll('.skill-tag').forEach(tag => {
-            tag.addEventListener('mouseenter', function() {
-                this.style.transform = 'scale(1.05)';
-            });
-            tag.addEventListener('mouseleave', function() {
-                this.style.transform = 'scale(1)';
-            });
-        });
-    </script>
 </body>
 </html>
